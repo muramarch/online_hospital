@@ -1,0 +1,81 @@
+{% url 'home' as home %}
+{% url 'services' as services %}
+{% url 'gallery' as gallery %}
+{% url 'contact' as contact %}
+{% load static %}
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-gradient-secondary">
+            <h1>
+                    <a class="navbar-brand text-white" href="{% url 'home' %}">
+                       eHealth
+                    </a>
+                </h1>
+            <button class="navbar-toggler ml-md-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-lg-auto text-center">
+
+                            {# Hiyo if-else ni kwaajili ya page kuwa active once choosen  #}
+                        <li class="nav-item  mr-3 mt-lg-0 mt-3">
+                            <a class="nav-link {% if request.path == home %} active {% endif %}" href="{% url 'home' %}">Главная</a>
+                        </li>
+
+                            {# Hiyo if-else ni kwaajili ya page kuwa active once choosen  #}
+                        <li class="nav-item  mr-3 mt-lg-0 mt-3">
+                            <a class="nav-link {% if request.path == services %} active {% endif %}" href="{% url 'services' %}">Севрис</a>
+                        </li>
+
+                        <li class="nav-item dropdown mr-3 mt-lg-0 mt-3">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                Запись
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{% url 'create-appointment' %}">Записаться</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{% url 'view-appointment' %}">Мои записи</a>
+                            </div>
+                        </li>
+
+                            {# Hiyo if-else ni kwaajili ya page kuwa active once choosen  #}
+                        <li class="nav-item mr-3 mt-lg-0 mt-3">
+                            <a class="nav-link {% if request.path == gallery %} active {% endif %}" href="{% url 'gallery' %}">Галерея</a>
+                        </li>
+
+                            {# Hiyo if-else ni kwaajili ya page kuwa active once choosen  #}
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == contact %} active {% endif %}" href="{% url 'contact' %}">Контакты</a>
+                        </li>
+
+
+                        {#        Kama user yuko ndani then ionyeshe Profile      #}
+                        {% if request.user.is_authenticated %}
+                            <li class="nav-item dropdown float-right">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ request.user.username }} <span class="caret"></span>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{% url 'user-profile' request.user.id %}"><i class="fa fa-user" aria-hidden="true"></i>Профиль</a>
+                                    <a class="dropdown-item" href="{% url 'update-user' %}"><i class="fa fa-key" aria-hidden="true"></i>Изменить профиль</a>
+                                    <div class="dropdown-divider"></div>
+
+                                    <!-- Logout -->
+                                    <a class="dropdown-item" href="{% url 'logout' %}">Выйти</a>
+                                    <!-- Logout -->
+
+                                </div>
+                            </li>
+
+                        {#        Kama sivyo then ionyeshe Login      #}
+                        {% else %}
+                            <li>
+                                <a class="nav-link" href="{% url 'login' %}">Войти</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+        </nav>
+    </header>
