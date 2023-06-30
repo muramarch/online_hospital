@@ -12,7 +12,7 @@ services:
 
   web:
     build: .
-    command: sh -c "sleep 10 && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    command: sh -c "sleep 10 && python manage.py migrate && echo 'from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.filter(username=\"admin2@gmail.com\", email=\"admin2@gmail.com\").exists() or User.objects.create_superuser(\"admin2@gmail.com\", \"admin2@gmail.com\", \"admin\")' | python manage.py shell && python manage.py runserver 0.0.0.0:8000"
     ports:
       - 80:8000
     networks:

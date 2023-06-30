@@ -36,6 +36,8 @@
 					<div class="stats">
 						<div class="stats_inner">
 							<form action="#" method="post">
+								{% csrf_token %} <!-- Добавьте эту строку для включения CSRF-токена -->
+						
 								<select class="form-control mb-3">
 									<option value="2">Невролог</option>
 									<option value="3">Стоматолог</option>
@@ -44,8 +46,8 @@
 									<option value="6">Пульмонолог</option>
 									<option value="7">Oфтальмолог</option>
 									<option value="8">Диагностика</option>
-								 </select>
-								 <input class="form-control mb-3" type="text" placeholder="Имя" name="name" required="">
+								</select>
+								<input class="form-control mb-3" type="text" placeholder="Имя" name="name" required="">
 								<select class="form-control mb-3">
 									<option value="2">Пол</option>
 									<option value="3">Мужской</option>
@@ -57,6 +59,7 @@
 								<button type="submit" class="btn btn-agile btn-block w-100">Записаться</button>
 							</form>
 						</div>
+						
 					</div>
 					<!-- //stats -->
 
