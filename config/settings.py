@@ -28,7 +28,6 @@ SECRET_KEY = env_config('SECRET_KEY')
 DEBUG = env_config('DEBUG', cast=bool, default=False)
 
 ALLOWED_HOSTS = env_config('ALLOWED_HOSTS').split(',')
-ALLOWED_HOSTS = []
 
 
 # Application definition
